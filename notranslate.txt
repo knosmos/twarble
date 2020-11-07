@@ -26,3 +26,7 @@ be
 yes
 has
 hasn't
+want
+have
+dont
+my

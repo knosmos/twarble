@@ -17,8 +17,8 @@ def index():
         for tweet in tweets:
             tweet.text = synonymize(tweet.text)
         return render_template('index.html',messages=tweets)
-    # Fetch three random handles from the list
-    handles = random.sample(mainhandles,3)
+    # Fetch five random handles from the list
+    handles = random.sample(mainhandles,5)
     tweets = []
     for handle in handles:
         tweet = twitter.get_tweets(handle,1)[0]

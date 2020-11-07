@@ -5,7 +5,7 @@ def pick(words):
     # Picks the most obnoxious word out of the list of words.
     # Remove any words that are multiple words to avoid confusion
     words = [word for word in words if word.count(' ')==0]
-    return random.choice(words[:10])
+    return random.choice(sorted(words[:30],key=len,reverse=True)[:3])
 
 def loadNoTranslate():
     global noTranslate
@@ -27,6 +27,8 @@ def translate(word,absurdity=0.7):
             pass
         # To maintain semblance of cohesiveness, some words are not translated
         if random.random() > absurdity: return word
+        # I don't want to deal with contractions
+        if "'" in word:return word
         # Copy original formatting
         capitalized = word[0].isupper()
         allcaps = word.isupper()
