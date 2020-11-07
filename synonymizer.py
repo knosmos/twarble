@@ -16,42 +16,41 @@ loadNoTranslate()
 
 def translate(word,absurdity=0.7):
     global noTranslate
+    # Is it a number?
+    try:
+        if int(word):
+            return word
+    except:
+        pass
+    # To maintain semblance of cohesiveness, some words are not translated
+    if random.random() > absurdity: return word
+    # I don't want to deal with contractions
+    if "'" in word:return word
+    # Copy original formatting
+    capitalized = word[0].isupper()
+    allcaps = word.isupper()
+    #if capitalized and not allcaps: return word # Ensure names are not changed
+    word = word.lower()
+    punctuation = ''
+    if word[-1] in ['!','.',',','?',';']:
+        punctuation = word[-1]
+        word = word[:-1]
     if word in noTranslate:
         return word
-    else:
-        # Is it a number?
-        try:
-            if int(word):
-                return word
-        except:
-            pass
-        # To maintain semblance of cohesiveness, some words are not translated
-        if random.random() > absurdity: return word
-        # I don't want to deal with contractions
-        if "'" in word:return word
-        # Copy original formatting
-        capitalized = word[0].isupper()
-        allcaps = word.isupper()
-        #if capitalized and not allcaps: return word # Ensure names are not changed
-        word = word.lower()
-        punctuation = ''
-        if word[-1] in ['!','.',',','?',';']:
-            punctuation = word[-1]
-            word = word[:-1]
-        # Send request to API
-        r = requests.get('http://api.datamuse.com/words?ml='+word)
-        words = [w['word'] for w in r.json()]
-        if len(words) == 0:
-            # No synonyms
-            if capitalized: word = word.capitalize()
-            if allcaps: word = word.upper()
-            return word+punctuation
-        res = pick(words)
-        # Add original formatting
-        if capitalized: res = res.capitalize()
-        if allcaps: res = res.upper()
-        res += punctuation
-        return res
+    # Send request to API
+    r = requests.get('http://api.datamuse.com/words?ml='+word)
+    words = [w['word'] for w in r.json()]
+    if len(words) == 0:
+        # No synonyms
+        if capitalized: word = word.capitalize()
+        if allcaps: word = word.upper()
+        return word+punctuation
+    res = pick(words)
+    # Add original formatting
+    if capitalized: res = res.capitalize()
+    if allcaps: res = res.upper()
+    res += punctuation
+    return res
 
 def fixGrammar(words):
     # Ensure that "a" precedes a consonant and "and" precedes a vowel

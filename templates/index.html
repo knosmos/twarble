@@ -16,7 +16,7 @@
                 <form method=POST>
                     <input id='handle' name='handle' placeholder='@handle'>
                     <input type=submit id='submit'>
-                </form>                
+                </form>
             </div>
             <br>
             {% for msg in messages %}
@@ -28,7 +28,10 @@
                 </div>
                 <br style='clear:both'>
                 <p class=message>{{msg.text}}</p><br>
-                <a class='tweet-link' href=https://twitter.com/twitter/statuses/{{msg.url}}>view real tweet</a>
+                <a class='tweet-link' onclick='document.getElementById("{{msg.url}}").style.display="block";'>view real tweet</a>
+                <div id={{msg.url}} style='display:none;'>
+                    {{msg.realTweet|safe}}
+                </div>
             </div>
             <br>
             {% endfor %}

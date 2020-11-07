@@ -1,4 +1,4 @@
-import tweepy 
+import tweepy, requests
 
 consumer_key = "C9lJMPJ6EI1WdQInKXajX99g9" 
 consumer_secret = "jpatKMyLe3kqqCYLvxi0wlWB3iKoA8C5EinjerNfyKccd4rYSe"
@@ -17,6 +17,8 @@ class message:
         self.profile = profile
         self.text = text
         self.url = url
+        r = requests.get('https://publish.twitter.com/oembed?url=https://twitter.com/twitter/statuses/'+str(url))
+        self.realTweet = r.json()['html']
 
 def removeLinks(input):
     if "http" in input:
