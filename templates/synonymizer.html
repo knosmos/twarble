@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel=stylesheet href=static/style.css type=text/css>
+        <link rel="icon" href="static/logo.png" type="image/x-icon"/>
+        <title>Twarble</title>
+    </head>
+    <body>
+        <nav>
+            <img src=static/logo.png width=50px>
+            
+            <a href='/about'>About</a>
+            <a href='/synonymizer'>Synonymizer</a>
+        </nav>
+        <div id = messageContainer>
+            <div class=card>
+                <form method=POST>
+                    <textarea name='text'></textarea>
+                    <input type=submit id='submit' value='Translate'>
+                </form>
+                {% if translation %}
+                <div id='translation'>
+                    {{translation}}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+</html>

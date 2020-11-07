@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel=stylesheet href=static/style.css type=text/css>
+        <link rel="icon" href="static/logo.png" type="image/x-icon"/>
+        <title>Twarble</title>
+    </head>
+    <body>
+        <nav>
+            <img src=static/logo.png width=50px>
+            <a href='/about'>About</a>
+            <a href='/synonymizer'>Synonymizer</a>
+        </nav>
+        <div id = messageContainer>
+            <div class=card>
+                <form method=POST>
+                    <input id='handle' name='handle' placeholder='@handle'>
+                    <input type=submit id='submit'>
+                </form>                
+            </div>
+            <br>
+            {% for msg in messages %}
+            <div class=card>
+                <img class=pfp src={{msg.profile}}>
+                <div class=profileContainer>
+                    <p class=name>{{msg.name}}</p>
+                    <p class=handle>@{{msg.handle}}</p>
+                </div>
+                <br style='clear:both'>
+                <p class=message>{{msg.text}}</p><br>
+                <a class='tweet-link'href=https://twitter.com/twitter/statuses/{{msg.url}}>view real tweet</a>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel=stylesheet href=static/style.css type=text/css>
+        <link rel=stylesheet href=style.css type=text/css>
+        <link rel="icon" href="static/logo.png" type="image/x-icon"/>
+        <title>Twarble</title>
+    </head>
+    <body>
+        <nav>
+            <img src=static/logo.png width=50px>
+            <a href='/about'>About</a>
+            <a href='/synonymizer'>Synonymizer</a>
+        </nav>
+        <div id = messageContainer>
+            <div class=card>
+                <h1>Twarble</h1>
+                <p>Created by Jieruei Chang and Nathan Myers.</p>
+                <h2>What is Twarble?</h2>
+                <h3>Twarble is an application that takes tweets and replaces every word in them with their most-smart-sounding synonyms for increased comedic value.</h3>
+                <h2>How does it work?</h2>
+                Twarble uses the tweepy library to obtain tweets from Twitter. Every word is then converted to a synonym with the Datamuse API. After conversion, the tweets are sent to a Flask server which provides you with all the garbled tweets you want.
+                <h2>Disclaimer</h2>
+                <p>Some of the content on this page may be offensive or inappropriate, due to the fact that we do not control what content is generated. We take no responsibility for any offensive or inappropriate material on this site.</p>
+            </div>
+        </div>
+    </body>
+</html>
