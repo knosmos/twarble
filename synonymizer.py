@@ -36,7 +36,9 @@ def translate(word,absurdity=0.7):
         punctuation = word[-1]
         word = word[:-1]
     if word in noTranslate:
-        return word
+        if capitalized: word = word.capitalize()
+        if allcaps: word = word.upper()
+        return word+punctuation
     # Send request to API
     r = requests.get('http://api.datamuse.com/words?ml='+word)
     words = [w['word'] for w in r.json()]

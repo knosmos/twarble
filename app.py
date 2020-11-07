@@ -54,15 +54,17 @@ def synonym():
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(140), index=True, unique=False)
+    original = db.Column(db.String(140), index=True, unique=False)
     timestamp = db.Column(db.String(64), index=True, unique=False)
     def __repr__(self):
         return '<Post {}>'.format(self.content)
 
 def add_post(content,timestamp):
     global db
+    original = content
     content = synonymize(content)
     print(content)
-    post = Post(content=content,timestamp=timestamp)
+    post = Post(content=content,original=original,timestamp=timestamp)
     db.session.add(post)
     db.session.commit()
 
