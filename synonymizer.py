@@ -18,7 +18,7 @@ def translate(word,absurdity=0.7):
     global noTranslate
     # Is it a number?
     try:
-        if int(word):
+        if int(word.replace(',','')):
             return word
     except:
         pass

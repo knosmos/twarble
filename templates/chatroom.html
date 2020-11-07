@@ -10,26 +10,25 @@
         <nav>
             <img src=static/logo.png width=50px>
             <a href='/about'>About</a>
-            <a href='/synonymizer'>Synonymizer</a>
+            <a href='/chat'>Chatroom</a>
             <a href='/'>Home</a>
         </nav>
         <div id = messageContainer>
             <div class=card style='text-align:center;'>
-                <h2>Reduce meaningful text to nonsensical gibberish!</h2>
                 <form method=POST>
-                    <textarea name='text'>{% if text %}{{text}}{% endif %}</textarea>
+                    <textarea name='text'>Write a message...</textarea>
                     <br><br>
-                    <input type=submit id=submitSynonym value='Translate'>
+                    <input type=submit id=submitSynonym value='Submit'>
                 </form>
-                {% if translation %}
-                <br>
-                <hr>
-                <br>
-                <div id='translation'>
-                    {{translation}}
-                </div>
-                {% endif %}
             </div>
+            <br>
+            {% for post in posts %}
+            <div class=card>
+                <p class=message>{{post.content}}</p>
+                <p class=handle>{{post.timestamp}}</p>
+            </div>
+            <br>
+            {% endfor %}
         </div>
     </body>
 </html>
