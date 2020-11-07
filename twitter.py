@@ -49,7 +49,8 @@ def get_tweets(username, number_of_tweets, useLinkRemoval=True):
         
         replaces = {'&lt;':'<','&gt;':'>','&amp;':'&'}
         for tweet in tweetStrings:
-            [tweet=tweet.replace(i,j) for i,j in replaces.items()]
+            for i,j in replaces.items():
+                tweet=tweet.replace(i,j)
 
         user = api.get_user(username)
 
