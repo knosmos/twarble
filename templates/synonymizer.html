@@ -8,17 +8,22 @@
     <body>
         <nav>
             <img src=static/logo.png width=50px>
-            
             <a href='/about'>About</a>
             <a href='/synonymizer'>Synonymizer</a>
+            <a href='/'>Home</a>
         </nav>
         <div id = messageContainer>
-            <div class=card>
+            <div class=card style='text-align:center;'>
+                <h2>Reduce meaningful text to nonsensical gibberish!</h2>
                 <form method=POST>
-                    <textarea name='text'></textarea>
-                    <input type=submit id='submit' value='Translate'>
+                    <textarea name='text'>{% if text %}{{text}}{% endif %}</textarea>
+                    <br><br>
+                    <input type=submit id=submitSynonym value='Translate'>
                 </form>
                 {% if translation %}
+                <br>
+                <hr>
+                <br>
                 <div id='translation'>
                     {{translation}}
                 </div>

@@ -5,6 +5,11 @@ consumer_secret = "jpatKMyLe3kqqCYLvxi0wlWB3iKoA8C5EinjerNfyKccd4rYSe"
 access_key = "1325119105888882689-kMRUQHQsNyeNXT2HRxBWZhcnKW5AnM"
 access_secret = "NofY4e7pWLfi0exO0sv1RrsiR2MjweCjYcWS8lwC5gQqV"
 
+# auth to consumer key and consumer secret 
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret) 
+auth.set_access_token(access_key, access_secret) 
+api = tweepy.API(auth)
+
 class message:
     def __init__(self,name,handle,profile,text,url):
         self.name = name
@@ -25,11 +30,9 @@ def removeLinks(input):
 
 # Function to extract tweets 
 def get_tweets(username, number_of_tweets, useLinkRemoval=True):
-        # auth to consumer key and consumer secret 
-        auth = tweepy.OAuthHandler(consumer_key, consumer_secret) 
-        auth.set_access_token(access_key, access_secret) 
-        api = tweepy.API(auth) 
+        global api
 
+        username = username.replace('@','')
         tweets = api.user_timeline(screen_name=username, count=number_of_tweets) 
         
         tweetStrings = []
@@ -43,6 +46,10 @@ def get_tweets(username, number_of_tweets, useLinkRemoval=True):
         tweets_for_URL = [tweet.id for tweet in tweets]
         for j in tweets_for_URL:
             tweetURLs.append(j)
+        
+        replaces = {'&lt;':'<','&gt;':'>','&amp;':'&'}
+        for tweet in tweetStrings:
+            [tweet=tweet.replace(i,j) for i,j in replaces.items()]
 
         user = api.get_user(username)
 

@@ -102,6 +102,36 @@ nav > #title{
     text-decoration:underline;
 }
 
+textarea{
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    font-size:23px;
+    border-radius:20px;
+    border:none;
+    background-color:rgb(243, 243, 243);
+    padding:10px;
+    width:90%;
+    height:300px;
+}
+#submitSynonym{
+    border-radius:20px;
+    border:none;
+    padding:10px;
+    font-size:23px;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    background-color:rgb(29, 167, 231);
+    color:white;
+    width:70%;
+    text-align:center;
+}
+#translation{
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    font-size:23px;
+}
+
+hr{
+    border: 1px solid rgb(207, 207, 207);
+}
+
 @media screen and (max-width:600px){
     .card{
         width:90%;
