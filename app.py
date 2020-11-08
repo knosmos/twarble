@@ -36,9 +36,11 @@ def index():
     handles = random.sample(mainhandles,5)
     tweets = []
     for handle in handles:
-        tweet = twitter.get_tweets(handle,1)[0]
-        tweet.text = synonymize(tweet.text)
-        tweets.append(tweet)
+        t = twitter.get_tweets(handle,1)
+        if len(t)>0:
+            tweet = t[0]
+            tweet.text = synonymize(tweet.text)
+            tweets.append(tweet)
     return render_template('index.html',messages=tweets)
 
 @app.route('/about', methods = ['GET'])
@@ -79,7 +81,7 @@ def chat():
         new_post = request.form['text']
         if new_post == '':
             return redirect(url_for('chat'))
-        timestamp = datetime.date.today().strftime('%y-%m-%d')
+        timestamp = datetime.date.today().strftime("%m/%d/%Y")
         add_post(new_post,timestamp)
         return redirect(url_for('chat'))
     return render_template('chatroom.html',posts=posts)
