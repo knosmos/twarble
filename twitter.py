@@ -1,9 +1,9 @@
 import tweepy, requests
 
-consumer_key = "C9lJMPJ6EI1WdQInKXajX99g9" 
-consumer_secret = "jpatKMyLe3kqqCYLvxi0wlWB3iKoA8C5EinjerNfyKccd4rYSe"
-access_key = "1325119105888882689-kMRUQHQsNyeNXT2HRxBWZhcnKW5AnM"
-access_secret = "NofY4e7pWLfi0exO0sv1RrsiR2MjweCjYcWS8lwC5gQqV"
+consumer_key = "xxxxx" 
+consumer_secret = "xxxxx"
+access_key = "xxxxx"
+access_secret = "xxxxx"
 
 # auth to consumer key and consumer secret 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret) 
